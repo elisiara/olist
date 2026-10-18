@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "duckdb": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-motherduck",
+        "--db-path",
+        "/home/elisiara/Documents/BIBLIOTECA/CURSOS/POS_Eng_dados_e_IA/projetos/olist/olist.duckdb"
+      ]
+    }
+  }
+}
