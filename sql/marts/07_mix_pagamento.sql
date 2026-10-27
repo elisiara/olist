@@ -3,6 +3,7 @@
 --
 -- O passo novo: a tabela pagamentos tem PK composta (pedido_id, pagamento_seq).
 -- Um pedido pago com múltiplos meios (ex.: 2 vouchers e 1 cartão de crédito) possui 3 linhas.
+-- Colunas: tipo, pagamentos, pedidos, valor e pct_valor (% do valor total, uma casa).
 --
 -- Diferença para a receita do Mart 01:
 -- A soma do valor dos pagamentos (R$ 15.739.137,01) é maior que a receita do Mart 01 (R$ 13.494.400,74)
@@ -30,6 +31,7 @@ WITH pagamentos_por_tipo AS (
     WHERE o.status NOT IN ('canceled', 'unavailable')
     GROUP BY p.tipo
 )
+--, totais_pagamentos AS (
 SELECT
     tipo,
     pagamentos,
@@ -38,21 +40,4 @@ SELECT
     round(100.0 * valor / sum(valor) OVER (), 1) AS pct_valor
 FROM pagamentos_por_tipo
 ORDER BY valor DESC
-
---==============================================================
--- Para conferir: 4 linhas, credit_card com 78,5% do valor, e a soma de valor
--- dá R$ 15.739.137,01. É mais que a receita do mart 01: explique a diferença
--- no comentário do arquivo?
--- No 01_vendas_mensais.sql, a receita calculada é sum(itens_pedido.preco)
--- (total de R$ 13.494.400,74), contabilizando unicamente o valor dos produtos vendidos.
--- Em pagamentos, o valor total pago é R$ 15.739.137,01, pois reflete o valor total
--- cobrado dos clientes no checkout,
--- que inclui o frete (R$ 2.241.126,29) somado ao preço dos produtos e pequenos ajustes.
-
-
--- 2 - E a soma de pedidos passa dos 98.206 pedidos válidos com pagamento — diga por quê?
--- Existem 98.206 pedidos distintos válidos pagos na base.
--- A soma da coluna pedidos dá 100.417 porque 2.211 pedidos utilizaram múltiplos
--- tipos de pagamento combinados (ex.: voucher + credit_card).
--- Como o COUNT(DISTINCT pedido_id) é calculado agrupado por tipo,
--- esses pedidos são contados em cada tipo de pagamento que participou da transação.
+--) SELECT ROUND(SUM(valor), 2) FROM totais_pagamentos; -- conferindo se a soma de valor dá R$ 15.739.137,01.
