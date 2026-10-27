@@ -28,4 +28,4 @@ JOIN (
 WHERE p.status NOT IN ('canceled', 'unavailable')
 GROUP BY c.uf
 ORDER BY c.uf;
---) SELECT SUM(pedidos) AS numero_de__pedidos, SUM(ticket_medio) as soma_ticket_medio FROM pedido_agrupado;
+--) SELECT SUM(pedidos) AS numero_de__pedidos FROM pedido_agrupado; -- Conferindo se soma pedidos é igual a 98.199

@@ -22,6 +22,7 @@
 
 -- Grão: uma forma de pagamento (tipo).
 WITH pagamentos_por_tipo AS (
+    -- Grão interno: p.tipo (o tipo de pagamento, como boleto, cartão de crédito, PIX, etc.).
     SELECT
         p.tipo,
         count(*)                    AS pagamentos,

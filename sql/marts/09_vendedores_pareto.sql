@@ -12,6 +12,7 @@
 
 -- Grão: Vendedor(vendedor_id e sua uf) com venda válida.
 WITH receita_por_vendedor AS (
+    -- Grão interno : vendor_id, v.uf (estado), um vendedor específico associado à sua respectiva UF.
     SELECT
         v.vendedor_id,
         v.uf,

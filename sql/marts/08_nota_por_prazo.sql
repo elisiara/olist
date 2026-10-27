@@ -14,6 +14,7 @@
 
 -- Grão: situação da entrega (ou status de prazo: no_prazo ou atrasado).
 WITH nota_pedido AS (
+    -- Grão interno : pedido_id
     SELECT
         pedido_id,
         avg(nota) AS nota
