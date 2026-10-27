@@ -1,5 +1,5 @@
 -- Concentração de vendedores (Pareto)
--- Grão: um vendedor com venda válida.
+-- Grão: Vendedor(vendedor_id e sua uf) com venda válida.
 -- Que fração dos vendedores faz 80% da receita? Uma linha por vendedor com venda válida,
 -- do maior para o menor, com a receita acumulada até ele. O passo novo é a janela com ordem:
 -- sum(...) OVER (ORDER BY ...) soma da primeira linha até a atual.
@@ -9,6 +9,8 @@
 -- Para conferir: 3.053 linhas, a última com 100,00, e a soma de receita igual à do mart 01.
 -- O primeiro vendedor a passar de 80% está na posição 540. Há vendedores com a receita idêntica:
 -- sem um desempate no ORDER BY da janela, eles ganham o mesmo acumulado, e rodar duas vezes pode não dar a mesma ordem.
+
+-- Grão: Vendedor(vendedor_id e sua uf) com venda válida.
 WITH receita_por_vendedor AS (
     SELECT
         v.vendedor_id,

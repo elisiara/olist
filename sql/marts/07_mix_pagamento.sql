@@ -20,6 +20,7 @@
 -- Para conferir:
 -- 4 linhas, credit_card com 78,5% do valor e soma total de valor = R$ 15.739.137,01.
 
+-- Grão: uma forma de pagamento (tipo).
 WITH pagamentos_por_tipo AS (
     SELECT
         p.tipo,

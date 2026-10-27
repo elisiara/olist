@@ -1,4 +1,5 @@
 -- A nota de quem recebeu atrasado
+-- Grão: situação da entrega (ou status de prazo: no_prazo ou atrasado).
 -- sql/marts/08_nota_por_prazo.sql. A pergunta que junta logística e satisfação:
 -- o atraso derruba a nota? Uma linha para quem recebeu no prazo e uma para quem recebeu atrasado,
 -- com o mesmo denominador do mart 03. O passo novo é combinar dois marts: a nota por pedido
@@ -10,6 +11,8 @@
 -- Para conferir: 2 linhas, a soma de pedidos_avaliados dá 95.824, e a nota dos atrasados fica
 -- abaixo de 2,5. Se a soma deu 96.353, você contou avaliações, não pedidos.
 -- Se a nota dos atrasados deu 2,57, releia a armadilha do mart 03.
+
+-- Grão: situação da entrega (ou status de prazo: no_prazo ou atrasado).
 WITH nota_pedido AS (
     SELECT
         pedido_id,
