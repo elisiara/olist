@@ -5,6 +5,7 @@ requires-python = ">=3.12"
 dependencies = [
     "duckdb>=1.5.6",
     "pandas>=3.0.6",
+    "plotly>=7.1.0",
     "pyarrow==17.0.0",
     "streamlit>=1.65.0",
 ]
